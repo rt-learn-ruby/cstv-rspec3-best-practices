@@ -1,0 +1,38 @@
+require 'spec_helper'
+
+describe Game do
+  subject(:game) { described_class.new }
+
+  describe '#call' do
+    let(:description) { |example| example.description }
+
+    context 'when the choices are different' do
+      it 'rock beats scissors' do |example|
+        expect(subject.call('rock', 'scissors')).to eq(example.description)
+      end
+    end
+
+    context 'when the choicen are the same' do
+      it 'draw' do
+        expect(subject.call('rock', 'rock')).to eq(description)
+      end
+    end
+  end
+
+  describe '#get_user_input' do
+    let(:description_message) { "Please select rock paper or scissor\n" }
+
+    before do
+      allow(subject).to receive(:gets).and_return('rock')
+    end
+
+    it 'prompts the user with the instructions' do
+      expect { subject.get_user_input }.to output(description_message).to_stdout
+    end
+
+    it 'returned what the user typed as input' do
+      allow(subject).to receive(:puts)
+      expect(subject.get_user_input).to eq('rock')
+    end
+  end
+end
