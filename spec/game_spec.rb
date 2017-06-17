@@ -7,8 +7,8 @@ describe Game do
     let(:description) { |example| example.description }
 
     context 'when the choices are different' do
-      it 'rock beats scissors' do |example|
-        expect(subject.call('rock', 'scissors')).to eq(example.description)
+      it 'rock beats scissors' do
+        expect(subject.call('rock', 'scissors')).to eq(description)
       end
     end
 
