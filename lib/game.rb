@@ -19,7 +19,9 @@ class Game
     gets.chomp
   end
 
-  def play; end
+  def play
+    puts call(get_user_input, rand_choice)
+  end
 
   private
 
